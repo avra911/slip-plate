@@ -1,2 +1,8 @@
-venv
+.venv
 __pycache__
+*.egg-info/
+slip_plate.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/

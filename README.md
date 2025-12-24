@@ -1,32 +1,63 @@
 # SLIP-P: Shamir DEK Plates
 
-SLIP-P is a Python implementation for visualizing Shamir-split DEKs on plates, similar to OneKey KeyTag. Supports 128, 192, 256-bit DEKs and dynamic checksum.
+SLIP-P is a small Python demo that shows how to split DEKs (128/192/256-bit) with
+Shamir secret sharing and render OneKey-style plates with a small checksum.
+
+This repository was refactored into modular components (CLI, checksum, plate
+renderer, Shamir wrappers, and crypto helpers) and includes unit tests.
+
+## Key files
+
+- `slip_plate/cli.py`: argparse entrypoint (`python -m slip_plate.cli`)
+- `slip_plate/main.py`: demo flow that encrypts, splits and recovers a DEK
+- `slip_plate/crypto.py`: AES-GCM helpers (`generate_dek`, `encrypt_with_dek`)
+- `slip_plate/shamir.py`: wrappers around `pyshamir` plus checksum handling
+- `slip_plate/checksum.py`: checksum utilities
+- `slip_plate/plate.py`: bits → OneKey-style plate renderer
+- `slip_plate/utils.py`: bits/bytes conversion helpers
+- `examples/example_run.py`: small runnable example (uses same args as CLI)
+- `tests/`: pytest suites (`test_utils.py`, `test_checksum.py`, `test_plate.py`, `test_shamir.py`, `test_end_to_end.py`)
 
 ## Installation
 
+Quick (no editable install):
+
 ```bash
-git clone https://github.com/avra911/slip-plate.git
-cd slip-plate
-pip install -r requirements.txt
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt pytest
+PYTHONPATH=. pytest -q
 ```
+
+Recommended (editable install so package imports work automatically):
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt pytest
+# then (optional) install editable if you added pyproject/setup.cfg
+pip install -e .
+pytest -q
+```
+
+If you don't want to install, setting `PYTHONPATH=.` before `pytest` or running
+the CLI via `python -m slip_plate.cli` will work.
 
 ## Usage
 
-```python
-from slip_plate.main import main
+This will generate a 256-bit DEK, split it into Shamir shares, print the plates and then recover the DEK to decrypt the message.
 
-main()
-```
-
-### Example usage
-
-Run the example script with a specific DEK size:
+Run the CLI/demo:
 
 ```bash
-python -m examples.example_run --dek 256
+python -m slip_plate.cli --dek-size 256 --parts 3 --threshold 2
 ```
 
-This will generate a 256-bit DEK, split it into Shamir shares, print the plates and then recover the DEK to decrypt the message.
+Run the example runner:
+
+```bash
+python -m examples.example_run --dek-size 256 --parts 3 --threshold 2
+```
 
 ### Example OneKey-style Plate
 
@@ -59,3 +90,27 @@ Dots (…) represent truncated rows for brevity.
 - DEKs are reconstructed from a quorum of shares during encryption or decryption
 - Nonces are unique per encryption and embedded in the ciphertext
 - No DEK is stored digitally outside memory during use
+
+
+### Tests
+
+Run all tests:
+
+```bash
+pytest -q
+```
+
+Run a single test file:
+
+```bash
+pytest tests/test_shamir.py -q
+```
+
+## Notes
+
+- Tests include a basic end-to-end flow that encrypts data, splits the DEK,
+  recovers it and decrypts to verify correctness.
+- The plate renderer uses ANSI symbols/colors for terminal output.
+
+If you want, I can also add `pyproject.toml` / `setup.cfg` to make editable
+installation via `pip install -e .` seamless — tell me and I'll add them.
