@@ -37,8 +37,15 @@ The tool generates ANSI-rendered plates for your terminal:
     ─────────────────────────────
  1 | ○ ● ● ● │ ● ○ ○ ● │ ● ● ○ ○ │
  2 | ○ ○ ● ○ │ ○ ○ ○ ○ │ ○ ○ ● ○ │
-...
+ . | . . . . | . . . . | . . . . |
+ . | . . . . | . . . . | . . . . |
+ . | . . . . | . . . . | . . . . |
+11 | ○ ○ ○ ● │ ● ● ● ○ │ ○ ○ ● ○ │
+12 | ● ● ○ ○ │ ● ● ○ ● │ ● ○ ○ ○ │
+    ─────────────────────────────
 ```
+Dots (…) represent truncated rows for brevity.
+
 
 ## Security Model
 - **Offline Storage:** Plates are intended to be generated once and stored physically (e.g., punched into metal).
@@ -52,7 +59,7 @@ If you want to contribute or run tests from the source code:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/avra911/slip-plate.git](https://github.com/avra911/slip-plate.git)
+   git clone https://github.com/avra911/slip-plate.git
    cd slip-plate
    ```
 2. **Install in editable mode:**
