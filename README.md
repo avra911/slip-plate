@@ -52,3 +52,10 @@ Below is a randomized example output for a KEK share plate (128-bit DEK, 2-of-3 
 ```
 
 Dots (…) represent truncated rows for brevity.
+
+### Security Model
+
+- Plates are generated once and stored offline
+- DEKs are reconstructed from a quorum of shares during encryption or decryption
+- Nonces are unique per encryption and embedded in the ciphertext
+- No DEK is stored digitally outside memory during use
