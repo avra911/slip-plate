@@ -94,7 +94,11 @@ Run a single test file:
 pytest tests/test_shamir.py -q
 ```
 
-## Notes
+## Notes and caveats
 
 - Tests include a basic end-to-end flow that encrypts data, splits the DEK, recovers it and decrypts to verify correctness.
 - The plate renderer uses ANSI symbols/colors for terminal output.
+- **This is a demo / research tool - treat outputs as examples and review the code and cryptographic choices before using in production.**
+- Keep printed plates physically secure; the checksum helps detect transcription errors but is not a replacement for proper key management.
+
+Contributions welcome - open a PR or an issue on the repo if you have improvements or questions.
