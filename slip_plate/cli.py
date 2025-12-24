@@ -1,6 +1,6 @@
 import argparse
 
-from .main import main
+from .slip_plate import main as run_demo
 
 
 def build_parser():
@@ -11,11 +11,11 @@ def build_parser():
     return parser
 
 
-def run():
+def main():
     parser = build_parser()
     args = parser.parse_args()
-    main(args.dek_size, args.parts, args.threshold)
+    run_demo(args.dek_size, args.parts, args.threshold)
 
 
 if __name__ == "__main__":
-    run()
+    main()

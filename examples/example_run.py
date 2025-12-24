@@ -1,6 +1,6 @@
 import argparse
 
-from slip_plate.main import main
+from slip_plate.slip_plate import main
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
