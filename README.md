@@ -6,18 +6,6 @@ Shamir secret sharing and render OneKey-style plates with a small checksum.
 This repository was refactored into modular components (CLI, checksum, plate
 renderer, Shamir wrappers, and crypto helpers) and includes unit tests.
 
-## Key files
-
-- `slip_plate/cli.py`: argparse entrypoint (`python -m slip_plate.cli`)
-- `slip_plate/main.py`: demo flow that encrypts, splits and recovers a DEK
-- `slip_plate/crypto.py`: AES-GCM helpers (`generate_dek`, `encrypt_with_dek`)
-- `slip_plate/shamir.py`: wrappers around `pyshamir` plus checksum handling
-- `slip_plate/checksum.py`: checksum utilities
-- `slip_plate/plate.py`: bits → OneKey-style plate renderer
-- `slip_plate/utils.py`: bits/bytes conversion helpers
-- `examples/example_run.py`: small runnable example (uses same args as CLI)
-- `tests/`: pytest suites (`test_utils.py`, `test_checksum.py`, `test_plate.py`, `test_shamir.py`, `test_end_to_end.py`)
-
 ## Installation
 
 Quick (no editable install):
@@ -108,9 +96,5 @@ pytest tests/test_shamir.py -q
 
 ## Notes
 
-- Tests include a basic end-to-end flow that encrypts data, splits the DEK,
-  recovers it and decrypts to verify correctness.
+- Tests include a basic end-to-end flow that encrypts data, splits the DEK, recovers it and decrypts to verify correctness.
 - The plate renderer uses ANSI symbols/colors for terminal output.
-
-If you want, I can also add `pyproject.toml` / `setup.cfg` to make editable
-installation via `pip install -e .` seamless — tell me and I'll add them.
