@@ -6,6 +6,7 @@ from .plate import bits_to_plate
 
 
 def main(dek_size=256, parts=3, threshold=2):
+def main(dek_size=256, parts=3, threshold=2):
     plaintext = b"Secret message encrypted with DEK"
     dek = generate_dek(dek_size)
     header = b"ENC1v1AESGCM256"
@@ -23,6 +24,7 @@ def main(dek_size=256, parts=3, threshold=2):
         print(bits_to_plate(sh))
 
     random.shuffle(shares_bin)
+    recovery_bin = shares_bin[:threshold]
     recovery_bin = shares_bin[:threshold]
     recovered_dek = recover_dek_from_shares(recovery_bin)
 
