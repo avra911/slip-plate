@@ -28,3 +28,26 @@ python -m examples.example_run --dek 256
 
 This will generate a 256-bit DEK, split it into Shamir shares, print the plates, and then recover the DEK to decrypt the message.
 
+
+### Example OneKey-style Plate
+
+Below is a randomized example of a KEK share plate (256-bit DEK, 2-of-3 Shamir):
+
+```bash
+=== Shares OneKey-style ===
+
+=== KEK Share 1 ===
+     2 1      │          │        
+     0 0 5 2  │ 1        │        
+     4 2 1 5  │ 2 6 3 1  │        
+     8 4 2 6  │ 8 4 2 6  │ 8 4 2 1
+     ─────────────────────────────
+ 1 | ○ ● ● ● │ ● ○ ○ ● │ ● ● ○ ○ │
+ 2 | ○ ○ ● ○ │ ○ ○ ○ ○ │ ○ ○ ● ○ │
+ . | . . . . | . . . . | . . . . |
+ . | . . . . | . . . . | . . . . |
+ . | . . . . | . . . . | . . . . |
+11 | ○ ○ ○ ● │ ● ● ● ○ │ ○ ○ ● ○ │
+12 | ● ● ○ ○ │ ● ● ○ ● │ ● ○ ○ ○ │
+     ─────────────────────────────
+```
