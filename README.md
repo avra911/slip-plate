@@ -1,4 +1,4 @@
-# SLIP-P: Shamir DEK Plates
+# SLIP-P - Shamir DEK Plates
 
 SLIP-P is a small Python demo that shows how to split DEKs (128/192/256-bit) with
 Shamir secret sharing and render OneKey-style plates with a small checksum.
