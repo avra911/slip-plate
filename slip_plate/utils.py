@@ -57,7 +57,7 @@ def bits_to_plate(bits: str, bits_per_row=12, group=4) -> str:
         plate_lines.append("    " + "".join(line_parts))
 
     # Separator under header
-    plate_lines.append("     " + "─" * (bits_per_row*2 + 5))
+    plate_lines.append("    " + "─" * (bits_per_row*2 + 5))
 
     # ANSI colors
     COLOR_DATA = "\033[97m"      # white
@@ -79,5 +79,5 @@ def bits_to_plate(bits: str, bits_per_row=12, group=4) -> str:
         plate_lines.append(f"{r+1:2} | " + " ".join(row_parts))
 
     # Final line
-    plate_lines.append("     " + "─" * (bits_per_row*2 + 5))
+    plate_lines.append("    " + "─" * (bits_per_row*2 + 5))
     return "\n".join(plate_lines)
