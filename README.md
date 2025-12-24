@@ -23,7 +23,7 @@ main()
 Run the example script with a specific DEK size:
 
 ```bash
-python -m examples.example_run --dek 256
+python -m examples.example_run --dek 256 --parts=3 --threshold=2
 ```
 
 This will generate a 256-bit DEK, split it into Shamir shares, print the plates and then recover the DEK to decrypt the message.

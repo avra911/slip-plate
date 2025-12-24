@@ -29,7 +29,7 @@ def recover_dek_from_shares(shares_bin) -> bytes:
 
     return combine(recovery_bytes)
 
-def main(dek_size=256):
+def main(dek_size=256, parts=3, threshold=2):
     plaintext = b"Secret message encrypted with DEK"
     dek = AESGCM.generate_key(bit_length=dek_size)
     aesgcm_dek = AESGCM(dek)
@@ -40,7 +40,7 @@ def main(dek_size=256):
     blob = header + nonce + ciphertext
     print("Encrypted blob (hex):", blob.hex())
 
-    shares_bytes = split(dek, 3, 2)
+    shares_bytes = split(dek, parts, threshold)
     shares_bin = [prepare_share(s) for s in shares_bytes]
 
     print(f"\n=== Shares OneKey-style ===")
@@ -49,7 +49,7 @@ def main(dek_size=256):
         print(bits_to_plate(sh))
 
     random.shuffle(shares_bin)
-    recovery_bin = shares_bin[:2]
+    recovery_bin = shares_bin[:threshold]
     recovered_dek = recover_dek_from_shares(recovery_bin)
 
     aesgcm_recovered = AESGCM(recovered_dek)
