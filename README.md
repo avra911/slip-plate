@@ -1,59 +1,34 @@
-# SLIP-P - Shamir DEK Plates
+# SLIP-PLATE - Shamir DEK Plates
 
-SLIP-P is a small Python demo that shows how to split DEKs (128/192/256-bit) with
-Shamir secret sharing and render OneKey-style plates with a small checksum.
-
-This repository was refactored into modular components (CLI, checksum, plate
-renderer, Shamir wrappers, and crypto helpers) and includes unit tests.
+SLIP-PLATE is a Python tool designed to split Data Encryption Keys (DEKs) (128/192/256-bit) using Shamir's Secret Sharing and render them as OneKey-style physical plates with built-in checksums.
 
 ## Installation
 
-Quick (no editable install):
+You can now install SLIP-PLATE directly from PyPI:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt pytest
-PYTHONPATH=. pytest -q
+pip install slip-plate
 ```
 
-Recommended (editable install so package imports work automatically):
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt pytest
-# then (optional) install editable if you added pyproject/setup.cfg
-pip install -e .
-pytest -q
-```
-
-If you don't want to install, setting `PYTHONPATH=.` before `pytest` or running
-the CLI via `python -m slip_plate.cli` will work.
+This will automatically install the necessary dependencies (`cryptography` and `pyshamir`) and register the `slip-plate` command in your terminal.
 
 ## Usage
 
-This will generate a 256-bit DEK, split it into Shamir shares, print the plates and then recover the DEK to decrypt the message.
-
-Run the CLI/demo:
+After installation, you can run the tool from anywhere using the `slip-plate` command:
 
 ```bash
-python -m slip_plate.cli --dek-size 256 --parts 3 --threshold 2
+slip-plate --dek-size 256 --parts 3 --threshold 2
 ```
 
-Run the example runner:
+### Arguments
+- `--dek-size`: Size of the DEK in bits (`128`, `192`, or `256`). Default: `256`.
+- `--parts`: Total number of Shamir shares to create. Default: `3`.
+- `--threshold`: Minimum number of shares required to reconstruct the key. Default: `2`.
 
-```bash
-python -m examples.example_run --dek-size 256 --parts 3 --threshold 2
-```
+### Example Output
+The tool generates ANSI-rendered plates for your terminal:
 
-### Example OneKey-style Plate
-
-Below is a randomized example output for a KEK share plate (128-bit DEK, 2-of-3 Shamir):
-
-```bash
-=== Shares OneKey-style ===
-
+```text
 === KEK Share 1 ===
      2 1     │         │        
      0 0 5 2 │ 1       │        
@@ -62,43 +37,38 @@ Below is a randomized example output for a KEK share plate (128-bit DEK, 2-of-3 
     ─────────────────────────────
  1 | ○ ● ● ● │ ● ○ ○ ● │ ● ● ○ ○ │
  2 | ○ ○ ● ○ │ ○ ○ ○ ○ │ ○ ○ ● ○ │
- . | . . . . | . . . . | . . . . |
- . | . . . . | . . . . | . . . . |
- . | . . . . | . . . . | . . . . |
-11 | ○ ○ ○ ● │ ● ● ● ○ │ ○ ○ ● ○ │
-12 | ● ● ○ ○ │ ● ● ○ ● │ ● ○ ○ ○ │
-    ─────────────────────────────
+...
 ```
 
-Dots (…) represent truncated rows for brevity.
+## Security Model
+- **Offline Storage:** Plates are intended to be generated once and stored physically (e.g., punched into metal).
+- **Ephemeral Memory:** DEKs are reconstructed from a quorum of shares only during active operations and are not persisted digitally.
+- **Unique Nonces:** Encryption uses unique nonces per session, embedded in the ciphertext.
+- **Minimal Footprint:** Designed to ensure no DEK is stored on disk in an unencrypted state.
 
-### Security Model
+## Development & Testing
 
-- Plates are generated once and stored offline
-- DEKs are reconstructed from a quorum of shares during encryption or decryption
-- Nonces are unique per encryption and embedded in the ciphertext
-- No DEK is stored digitally outside memory during use
+If you want to contribute or run tests from the source code:
 
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/avra911/slip-plate.git](https://github.com/avra911/slip-plate.git)
+   cd slip-plate
+   ```
+2. **Install in editable mode:**
+   ```bash
+   pip install -e .
+   ```
+3. **Run tests:**
+   ```bash
+   pip install pytest
+   pytest -q
+   ```
 
-### Tests
+## Notes and Caveats
+- **Research Tool:** This is a demo/research tool. Review the code and cryptographic implementations before use in production environments.
+- **Physical Security:** Treat printed/punched plates as high-security assets.
+- **Checksums:** The built-in checksum helps detect transcription errors but does not replace proper key management procedures.
 
-Run all tests:
-
-```bash
-pytest -q
-```
-
-Run a single test file:
-
-```bash
-pytest tests/test_shamir.py -q
-```
-
-## Notes and caveats
-
-- Tests include a basic end-to-end flow that encrypts data, splits the DEK, recovers it and decrypts to verify correctness.
-- The plate renderer uses ANSI symbols/colors for terminal output.
-- **This is a demo / research tool - treat outputs as examples and review the code and cryptographic choices before using in production.**
-- Keep printed plates physically secure; the checksum helps detect transcription errors but is not a replacement for proper key management.
-
-Contributions welcome - open a PR or an issue on the repo if you have improvements or questions.
+---
+Contributions are welcome! Feel free to open a PR or an issue on [GitHub](https://github.com/avra911/slip-plate).
