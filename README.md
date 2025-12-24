@@ -36,10 +36,10 @@ Below is a randomized example output for a KEK share plate (128-bit DEK, 2-of-3 
 === Shares OneKey-style ===
 
 === KEK Share 1 ===
-     2 1      │          │        
-     0 0 5 2  │ 1        │        
-     4 2 1 5  │ 2 6 3 1  │        
-     8 4 2 6  │ 8 4 2 6  │ 8 4 2 1
+     2 1     │         │        
+     0 0 5 2 │ 1       │        
+     4 2 1 5 │ 2 6 3 1 │        
+     8 4 2 6 │ 8 4 2 6 │ 8 4 2 1
      ─────────────────────────────
  1 | ○ ● ● ● │ ● ○ ○ ● │ ● ● ○ ○ │
  2 | ○ ○ ● ○ │ ○ ○ ○ ○ │ ○ ○ ● ○ │
