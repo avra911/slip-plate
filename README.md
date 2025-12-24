@@ -1,6 +1,6 @@
 # SLIP-P: Shamir DEK Plates
 
-SLIP-P is a Python implementation for visualizing Shamir-split DEKs on plates, similar to OneKey. Supports 128, 192, 256-bit DEKs and dynamic checksum.
+SLIP-P is a Python implementation for visualizing Shamir-split DEKs on plates, similar to OneKey KeyTag. Supports 128, 192, 256-bit DEKs and dynamic checksum.
 
 ## Installation
 
