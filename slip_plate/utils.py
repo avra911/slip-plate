@@ -53,7 +53,7 @@ def bits_to_plate(bits: str, bits_per_row=12, group=4) -> str:
             char = c[row] if row < len(c) else ' '
             line_parts.append(f" {char}")
             if (i+1) % group == 0 and (i+1) != bits_per_row:
-                line_parts.append("  │")
+                line_parts.append(" │")
         plate_lines.append("    " + "".join(line_parts))
 
     # Separator under header
