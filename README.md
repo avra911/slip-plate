@@ -40,7 +40,7 @@ Below is a randomized example output for a KEK share plate (128-bit DEK, 2-of-3 
      0 0 5 2 │ 1       │        
      4 2 1 5 │ 2 6 3 1 │        
      8 4 2 6 │ 8 4 2 6 │ 8 4 2 1
-     ─────────────────────────────
+    ─────────────────────────────
  1 | ○ ● ● ● │ ● ○ ○ ● │ ● ● ○ ○ │
  2 | ○ ○ ● ○ │ ○ ○ ○ ○ │ ○ ○ ● ○ │
  . | . . . . | . . . . | . . . . |
@@ -48,7 +48,7 @@ Below is a randomized example output for a KEK share plate (128-bit DEK, 2-of-3 
  . | . . . . | . . . . | . . . . |
 11 | ○ ○ ○ ● │ ● ● ● ○ │ ○ ○ ● ○ │
 12 | ● ● ○ ○ │ ● ● ○ ● │ ● ○ ○ ○ │
-     ─────────────────────────────
+    ─────────────────────────────
 ```
 
 Dots (…) represent truncated rows for brevity.
