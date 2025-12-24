@@ -31,7 +31,7 @@ This will generate a 256-bit DEK, split it into Shamir shares, print the plates,
 
 ### Example OneKey-style Plate
 
-Below is a randomized example of a KEK share plate (256-bit DEK, 2-of-3 Shamir):
+Below is a randomized example of a KEK share plate (128-bit DEK, 2-of-3 Shamir):
 
 ```bash
 === Shares OneKey-style ===
