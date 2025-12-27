@@ -2,6 +2,8 @@
 
 SLIP-PLATE is a Python tool designed to split Data Encryption Keys (DEKs) (128/192/256-bit) using Shamir's Secret Sharing and render them as OneKey-style physical plates with built-in checksums.
 
+This project does not implement a wallet and does not interact with blockchains directly.
+
 ## Installation
 
 You can now install SLIP-PLATE directly from PyPI:
@@ -76,6 +78,21 @@ If you want to contribute or run tests from the source code:
 - **Research Tool:** This is a demo/research tool. Review the code and cryptographic implementations before use in production environments.
 - **Physical Security:** Treat printed/punched plates as high-security assets.
 - **Checksums:** The built-in checksum helps detect transcription errors but does not replace proper key management procedures.
+
+## Disclaimer
+
+This software is provided as-is, without warranty of any kind.
+
+It is intended for educational and experimental purposes.
+No formal security audit has been performed.
+
+Do not use this software to secure funds or data
+that you cannot afford to lose.
+
+The authors take no responsibility for loss of funds,
+data corruption, or other damages resulting from the use
+or misuse of this software.
+
 
 ---
 Contributions are welcome! Feel free to open a PR or an issue on [GitHub](https://github.com/avra911/slip-plate).
